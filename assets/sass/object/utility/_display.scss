@@ -1,0 +1,35 @@
+@use '../../setting'as g;
+//@use '../../function'as f;
+
+// display関連ユーティリティ
+.u-inline-block {
+	display: inline-block !important;
+}
+
+// ブレイクポイントによる表示・非表示
+@media screen and (max-width: 1023px) {
+	// タブレット・横未満は非表示
+	.u-hide-tb {
+		display: none !important;
+	}
+}
+@media screen and (min-width: 1024px) {
+	// タブレット・横未満は表示
+	.u-show-tb {
+		display: none !important;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	// スマホのみ非表示
+	.u-hide-sp {
+		display: none !important;
+	}
+}
+@media screen and (min-width: 768px) {
+	// スマホのみ表示
+	.u-show-sp {
+		display: none !important;
+	}
+}
+

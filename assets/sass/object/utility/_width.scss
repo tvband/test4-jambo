@@ -1,0 +1,54 @@
+//@use '../../function'as f;
+
+/*
+	width指定
+
+	px指定　.u-w*
+	*は0～300まで10px刻み
+	*は300～1000まで50px刻み
+
+	%指定　.u-w*p
+	*は0～100まで1%刻み
+
+	SPのみの指定　末尾に-sp
+	.u-w*-sp
+	.u-w*p-sp
+	
+	ex.
+	.u-w10　10px
+	.u-w50p　50%
+*/
+@for $i from 0 through 30 {
+	.u-w#{10 * $i} {
+		width: #{10 * $i}px;
+	}
+}
+@for $i from 7 through 20 {
+	.u-w#{50 * $i} {
+		width: #{50 * $i}px;
+	}
+}
+@for $i from 0 through 100 {
+	.u-w#{1 * $i}p {
+		width: #{1 * $i}+'%';
+	}
+}
+
+// SPのみの指定
+@media screen and (max-width: 767px) {
+	@for $i from 0 through 30 {
+		.u-w#{10 * $i}-sp {
+			width: #{10 * $i}px;
+		}
+	}
+	@for $i from 7 through 20 {
+		.u-w#{50 * $i}-sp {
+			width: #{50 * $i}px;
+		}
+	}
+	@for $i from 0 through 20 {
+		.u-w#{5 * $i}p-sp {
+			width: #{5 * $i}+'%';
+		}
+	}
+}

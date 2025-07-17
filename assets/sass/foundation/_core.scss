@@ -1,0 +1,36 @@
+@use '../setting' as g;
+//@use '../function' as f;
+
+// 基本設定
+
+::selection {
+  background-color: var(--color-key);
+  color: #fff;
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	color: var(--color-text);
+	font-size: var(--font-size-16);
+	font-family: var(--font-family-default);
+	line-height: 1.85;
+	@media screen and (max-width: 767px) {
+		font-size: var(--font-size-14);
+	}
+}
+a {
+	color: var(--color-key);
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+button {
+	transition: all .1s linear;
+}

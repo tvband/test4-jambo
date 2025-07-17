@@ -1,0 +1,45 @@
+// 変数設定
+
+
+//
+// ブレイクポイント
+// ポイント自体を増減する場合は「_mixin.scss」要変更　→　このflocsでは使用していない
+//
+// sass変数を使わないためコメントアウト
+//$bp_sp: 768px;// タブレットの最小幅
+//$bp_tb: 1024px;// PCの最小幅
+//$bp_pc: 1200px;// 最大コンテンツ幅
+
+
+//
+// フォント
+//
+/*
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;400;500;700;900&display=swap');
+*/
+// WebフォントはNuxt Fontsにより自動でインポートされる（はず）
+:root {
+	--font-family-default: 'Noto Sans JP', sans-serif;
+}
+
+
+
+//
+// 色
+//
+:root {
+	// 基本色
+	--color-key: #45b035;// サイトのキーカラー
+	--color-accent: #00B17A;// アクセントカラー
+	--color-text: #4D4D4D;// 基本テキストカラー
+}
+
+
+//
+// view transition
+//
+@for $i from 1 through 500 {
+	.view-item#{$i} {
+		view-transition-name: item#{$i};
+	}
+}

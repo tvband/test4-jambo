@@ -1,0 +1,26 @@
+@use '../../setting'as g;
+//@use '../../function'as f;
+
+// テキスト関連ユーティリティ
+
+.u-align-center {
+	text-align: center;
+}
+.u-align-left {
+	text-align: left;
+}
+.u-align-right {
+	text-align: right;
+}
+
+@media screen and (max-width: 1023px) {
+	.u-align-center-sp {
+		text-align: center;
+	}
+	.u-align-left-sp {
+		text-align: left;
+	}
+	.u-align-right-sp {
+		text-align: right;
+	}
+}

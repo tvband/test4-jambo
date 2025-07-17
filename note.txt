@@ -1,0 +1,441 @@
+/*
+	このNuxtプロジェクトファイルのメモ
+	
+	◆参考にしたページ
+	・Nuxt 3を使いこなすために基礎から徹底解説
+	https://reffect.co.jp/vue/nuxt3/
+
+	・Nuxt3で実務想定の実装環境を構築する
+	https://qiita.com/rockinruuula1227/items/efc54e5f43911b336f3d
+*/
+
+
+--------------------------------------------
+◆環境構築手順
+
+プロジェクトのディレクトリ上でnuxt3インストール
+npm create nuxt 【app name】
+
+作成されたappディレクトリ上でサーバー立ち上げ
+npm run dev
+
+ビルドする
+npm run generate
+/dist/以下に静的ファイル一式が書き出される
+
+※
+npm run build
+では SSR 前提の生成物しか吐き出さない？
+https://ema-hiro.hatenablog.com/entry/2023/06/18/003455
+
+
+--------------------------------------------
+◆モジュール
+
+・Nuxt content
+Nuxt Contentはマークダウンファイルで管理されるコンテンツを元に、コンテンツの一覧表示、検索機能、リンクの作成、ページネーションなどを提供するプラグイン
+https://ics.media/entry/241108/
+
+
+・Nuxt Fonts
+インストールするだけで、CSSのfont-familyを解析し、必要なフォントを自動的に取得・提供してくれる
+https://qiita.com/muma/items/7981fa0926a988e48bf7
+
+
+・Nuxt Image
+サイズ等の最適化を自動で行ってくれる
+https://image.nuxt.com/usage/nuxt-img
+https://tech-education-nav.com/contents/educational-materials/nuxt-js/nuxt-img-nuxt-picture-optimization-guide
+
+※assets/ディレクトリに保存されている画像はバンドラー (Vite や webpack など) によって管理されるため、Nuxt Image では処理されません。
+https://image.nuxt.com/get-started/providers
+
+<NuxtImg /> imgタグ　指定サイズへ切り出し可能
+<NuxtPicture /> pictureタグ　webpなどフォーマット指定可能
+※レスポンシブ設定も解像度別設定も基本デフォルトで対応されてるぽい
+※いまいち理解しきれず、imgタグとpictureタグの使い分けの感覚で使えばOK？
+※ただしpictureタグの複数画像設定はできない
+＞ネイティブ要素とは異なり、現在複数の画像ソースの使用はサポートされていません。
+https://image.nuxt.com/usage/nuxt-picture
+
+imgタグ、pictureタグの使い分け参考
+https://ics.media/entry/13324/#%E3%82%A2%E3%83%BC%E3%83%88%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8Bpicture%E8%A6%81%E7%B4%A0
+
+▲ベタ書きの固定ページ等では通常タグ記述でよさそう
+　投稿ページのような場合はモジュール利用して画像トリミングの手間など排除できる感じ
+
+
+
+・Nuxt Scripts
+Third-Party Scriptsを楽に使用するためのモジュール（？）
+Analytics、Youtube Player, Google Maps他
+iframe記述より高速に動作
+https://zenn.dev/comm_vue_nuxt/articles/what-is-nuxt-scripts
+
+
+・Nuxt UI
+Nuxt UIは、Tailwind CSSとReka UIで構築された50以上のカスタマイズ可能なコンポーネントからなるオープンソースのUIライブラリ
+https://ui.nuxt.com/
+https://tech.kickflow.co.jp/entry/2025/06/20/135240
+
+
+
+--------------------------------------------
+◆Lenis GSAPでスムーススクロールとコンテンツ表示アニメーション実装
+
+ライブラリをプロジェクトへインポートする
+npm install lenis
+npm install gsap
+
+スクロールは全ページへ適用するのでapp.vueへ記述　※他にやりようあるかも
+GSAPスクロールトリガーとlenisも連動させておく
+
+GSAPの適用は全体共通ならapp.vue、個別なら個別vueファイルへ記述
+
+
+
+--------------------------------------------
+◆CSS viewtransition有効化
+
+nuxt.config.tsで有効化する
+experimental: {
+  viewTransition: true,
+},
+
+対象要素毎にCSSで紐づけ
+.view-item1 {
+	view-transition-name: item1;
+}
+実用では動的に用意できる仕様が必要
+vue側で一意の値を動的に書き出して設定する等
+
+動的ルーティンでページIDをclassに埋め込むことは可能
+CSS側のclassでのview-transition-name設定は動的に設定できないぽいので事前にSCSSで用意しておく
+※config.scssに記載
+
+
+
+--------------------------------------------
+◆Nuxt contentでの記事更新
+https://content.nuxt.com/docs/getting-started/installation
+https://ics.media/entry/241108/
+https://zenn.dev/y_taka520/articles/6731292c782c8f
+※2025/7/16時点ではNuxt content v3が最新
+
+/coontent/配下にmdファイルを配置する
+表示ページvueファイル内でqueryCollectionから読み込み可能
+
+※mdファイルを作成してもページに反映されなかったが再度run devしたら反映された
+
+
+
+--------------------------------------------
+◆Nuxt Studio
+https://nuxt.studio/
+https://ics.media/entry/250203/
+
+Nuxt Contentをweb上で編集するwebサービス
+管理者：GitHubアカウントでログイン
+編集者：Googleアカウントでログイン
+
+複数編集は有料
+
+
+
+
+/* 以下前プロジェクトからの記述 */
+
+--------------------------------------------
+◆ページ設計
+
+▼LPなど単ページ
+/app.vue
+にコーディングする
+
+
+▼下層ページあり
+/pages/ディレクトリを作成してvueファイルを配置してページ作成
+npx nuxi add page 【page name】
+でも作成可能
+
+・indexページを作成
+npx nuxi add page index
+/pages/index.vueが作成される
+
+・pagesのファイルが反映されるよう設定
+app.vueの<template>内に
+<NuxtPage />
+を記述する
+
+・他ページを作成
+aboutページを作成する場合
+npx nuxi add page about
+/pages/about.vueが作成される
+自動的に
+/about/
+でページが表示されるようになる
+
+
+--------------------------------------------
+◆レイアウト設定
+ナビゲーション等、全ページ共通のページレイアウトを設定する
+
+・layoutsディレクトリを作成しdefault.vueファイルを作成する
+/layouts/default.vue
+
+・default.vueへレイアウトをコーディングする
+pages内のファイルを反映させる箇所には
+<slot />
+を記述する
+
+・レイアウトが反映されるよう設定する
+app.vueの<NuxtPage />を<NuxtLayout>で囲む
+<template>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
+</template>
+
+・レイアウトを除外する
+除外したいページのファイルに除外記述をする
+<script setup>
+definePageMeta({
+  layout: false,
+});
+</script>
+
+・別レイアウトを作成
+/layouts/に任意のレイアウト名でファイルを作成
+/layouts/custom.vue
+※customは任意の名称を設定可能
+
+・特定ページで別レイアウトを適用する
+適用したいページのファイルに適用記述をする
+<script setup>
+definePageMeta({
+  layout: 'custom',
+});
+</script>
+
+・デフォルトレイアウトファイルを変更する
+app.vueの<NuxtLayout>のname propsに設定記述する
+<NuxtLayout name="custom">
+
+・条件でレイアウトファイルを切り替える
+v-bind と name Props を利用する
+<script setup>
+const admin = true;
+const layout = admin ? 'custom' : 'default';
+</script>
+<template>
+  <NuxtLayout :name="layout">
+    <NuxtPage />
+  </NuxtLayout>
+</template>
+
+・動的にレイアウトファイルを切り替える
+setPageLayoutを利用する
+<script setup>
+function enableCustomLayout() {
+  setPageLayout('custom');
+}
+definePageMeta({
+  layout: false,
+});
+</script>
+<template>
+  <div>
+    <button @click="enableCustomLayout">Update layout</button>
+  </div>
+</template>
+
+
+※app.vueを削除してもページは表示される
+※その場合、基本的にdefault.vue のレイアウトが適用される
+
+
+
+--------------------------------------------
+◆コンポーネント設定
+再利用可能なコンポーネントを管理する
+
+・componentsディレクトリを作成する
+
+・任意のファイル名でvueファイルを作成する
+/components/Navbar.vue
+
+・使用する箇所にコンポーネント名タグで記述する
+<Navbar />
+
+・componentsディレクトリ内でネストしている場合
+/components/nav/Navbar.vue
+<NavNavbar />
+
+・import文でimportして利用も可能
+<script setup>
+import Navbar from '@/components/nav/Navbar';
+</script>
+<template>
+  <Navbar />
+</template>
+※通常は自動でインポートされるので不要
+※コンポーネント名が「NavBar」のように途中に大文字がある場合、
+　途中の大文字でネストしていると判断されるため正常にインポートされない場合などに利用できる
+
+・Lazy Loading設定
+記述されたコンポーネントが必要な場合のみロードする
+クリックして始めてコンポーネント要素が表示されるような場合、クリックされるまではコンポーネントのロードが発生しない
+<LazyNavbar />
+
+
+
+--------------------------------------------
+◆リンクタグ設定
+aタグでは都度ページ全体をロードすることになるが、NuxtLinkタグを利用することで必要な箇所のみのロードと出来る
+外部リンク時はaタグと同様の挙動となる
+<NuxtLink to="/about">About</NuxtLink>
+<NuxtLink to="https://google.com" target="_blank">
+
+・パラメータを渡す
+https://nuxt.com/docs/api/components/nuxt-link
+https://autopp-tech.hatenablog.com/entry/2019/06/13/093832
+<NuxtLink :to="{ name: 'posts-id', params: { id: 123 } }">
+※リンク先をname属性で指定
+※name属性の値はNuxt DevToolsで確認（Nuxtサーバー上でページ表示時にページ下部のNuxtアイコンをクリック）
+
+
+
+--------------------------------------------
+◆assetsファイルの設定
+
+・assetsディレクトリを作成し各関連ファイルを格納する
+/assets/css/
+/assets/img/
+/assets/js/
+等
+
+・【CSS】共通ファイルを設定ファイルで読み込み設定する
+nuxt.config.tsの defineNuxtConfig に記述する
+export default defineNuxtConfig({
+  ...
+  css: ['/assets/css/style.css'],
+});
+
+・【CSS】各ページで読み込み
+<script setup>
+import '@/assets/css/style.css';
+</script>
+もしくは
+<style scoped>
+@import '@/assets/css/style.css';
+</style>
+※scoped付きstyleタグで読み込む方が範囲を限定できてよいのでは
+
+・【画像】imgタグで読み込み
+<img src="~/assets/icon.png" alt="Nuxt3 Icon" />
+※パスの先頭に ~ が必要
+※publicディレクトリ保存されている画像ファイルの場合は ~ と /public/ は不要
+　/icon.png
+
+
+
+--------------------------------------------
+◆SASS設定
+デフォルトではsassが有効になっていないのでインストールする
+npm install sass --save-dev
+または
+npm i sass -D
+
+sass利用を設定したstyleタグの中で使用する
+<style lang="scss" scoped>
+
+※sass有効化していなくてもネストはビルド時にネスト無しの形式へコンパイルされる
+※mixinなどの関数利用しなければ通常CSSでよい
+※共通CSSをflocs形式のsassを利用して構築する場合はsass有効化必須
+
+
+--------------------------------------------
+◆metaタグ設定
+設定ファイル nuxt.config.ts にて設定する
+export default defineNuxtConfig({
+  ...
+  app: {
+    head: {
+      title: 'Nuxt 3 basic',
+      meta: [{ name: 'description', content: 'Nuxt 3 for beginners' }],
+      link: [{ rel: 'icon', href: '/icon.png' }],
+    },
+  },
+});
+
+
+
+--------------------------------------------
+◆Composables
+再利用可能なスクリプトを作成する
+ページ表示時にデータフェッチし、状態によって表示切り分け等
+https://zenn.dev/hoshi_front/articles/1f79130fac2d70
+
+・composablesディレクトリを作成しファイルを格納する
+
+※イメージのプリロード等でつかえる？
+※ローディング中はローディング表示のみでロード終了後にコンテンツ表示
+
+Nuxt 3 ではデータを取得するためのComposablesが事前に準備されているためそれらのComposablesを利用することができる
+useFetch
+useLazyFetch
+useAsyncData
+useLazyAsyncData
+
+
+
+--------------------------------------------
+◆pageTransition
+ページ遷移時にアニメーションを追加する
+https://jp-aweso.me/?p=121
+https://zenn.dev/hsato_workman/books/e83fc8b7cca146/viewer/c3732c
+
+
+
+
+--------------------------------------------
+◆Vue関数
+https://zenn.dev/rescuenow/articles/2e5bd54770ef38#v-model
+
+・v-on
+イベントリスナーを登録
+v-on:click=""
+▲短縮 @click=""
+
+・v-bind
+HTMLのプロパティ等に動的なデータをバインドしたい場合に使用する
+v-bind:href=""
+▲短縮 :href=""
+
+・v-model
+フォーム要素と双方向にデータバインドするために使用
+フォーム入力の値をリアルタイムでデータプロパティに反映したいとき
+チェックボックスやラジオボタンの状態を管理したいとき
+ドロップダウンリストの選択を管理したいとき
+
+・v-slot
+コンポーネントの一部を親コンポーネントからカスタマイズしたいとき:
+親コンポーネントが子コンポーネントの一部の内容を動的に変更したい場合。
+
+複数のスロットを持つ子コンポーネントを作りたいとき:
+子コンポーネントの異なる部分に異なるテンプレートを渡したい場合。
+
+スコープ付きスロットを使いたいとき:
+子コンポーネントのデータをスロットのテンプレートで使用したい場合。
+
+・v-show
+v-showは、要素の表示/非表示をCSSのdisplayプロパティで制御するディレクティブ
+v-ifは要素をDOMから完全に追加/削除するのに対し、v-showは要素をDOMに残したまま表示状態を変更
+
+・v-if
+
+・v-for
+
+
+
+

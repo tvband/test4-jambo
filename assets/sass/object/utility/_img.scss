@@ -1,0 +1,32 @@
+@use '../../setting'as g;
+//@use '../../function'as f;
+
+// 画像関連ユーティリティ
+
+// object-fit
+// 親要素でposition: relative;とサイズ指定されている前提
+.u-object-fit-cover {
+	height: 100%;
+	left: 0;
+	object-fit: cover;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+// picture要素への指定
+// pictureの親要素でラッパーサイズが指定されている前提
+.u-object-fit-cover-wrapper {
+	display: block;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	img {
+		height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+	}
+}
