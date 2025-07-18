@@ -1,6 +1,8 @@
 ---
 title: tem2
-date: 2025/7/18
+date: 2025-07-13T15:00:00.000Z
+tags: []
+draft: false
 ---
 
 # Item2 page
