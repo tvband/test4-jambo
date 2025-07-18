@@ -11,6 +11,8 @@ const { data } = await useAsyncData(route.path, () =>
     
     <div class="c-contents">
       <div class="c-inner">
+        <p v-if="data?.date">date : {{ data.date }}</p>
+
         <ContentRenderer v-if="data" :value="data" />
         <div v-else>Type1の{{ $route.params.slug }}のコンテンツが見つかりませんでした。</div>
 
