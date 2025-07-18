@@ -15,13 +15,7 @@ editで追加したタイトル
 カードの説明文カードの説明文カードの説明文カードの説明文カードの説明文
 
 #img
-  :::prose-img
-  ---
-  alt: image alt
-  height: "500"
-  src: /img/GuWeY9laMAA8mLR.jpg
-  width: "500"
-  ---
+  :::prose-img{alt="card img" src="/img/GuWeY9laMAA8mLR.jpg" width="200"}
   :::
 ::
 
