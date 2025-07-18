@@ -10,5 +10,3 @@ date: 2025/2/3
 さらにエディターにて追加
 
 ## エディターで追加しました。
-
-![GuWeY9laMAA8mLR.jpg](/img/GuWeY9laMAA8mLR.jpg)
