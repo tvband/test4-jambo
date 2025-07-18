@@ -1,5 +1,5 @@
----  
-title: 「PageType1」の「Item-1」 
+---
+title: 「PageType1」の「Item-1」
 date: 2025/2/3
 ---
 
