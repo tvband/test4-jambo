@@ -10,7 +10,12 @@ export default defineContentConfig({
 				tags: z.array(z.string()),
 				image: z.string(),
 				date: z.date(),
-				draft: z.boolean()
+				draft: z.boolean(),
+				number: z.number(),
+				bigint: z.bigint(),
+				symbol: z.symbol(),
+				undifined: z.undefined(),
+				null: z.null()
 			})
 		}),
 	}
