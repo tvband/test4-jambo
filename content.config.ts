@@ -1,4 +1,4 @@
-import { defineContentConfig, defineCollection } from '@nuxt/content'
+import { defineContentConfig, defineCollection, z } from '@nuxt/content'
 
 export default defineContentConfig({
 	collections: {
@@ -8,7 +8,13 @@ export default defineContentConfig({
 		}),
 		type1: defineCollection({
 			type: 'page',
-			source: '1.type1/*.md'
+			source: '1.type1/*.md',
+			// メタデータの追加
+			schema: z.object({
+				draft: z.boolean(),
+				date: z.date(),
+				tag: z.array(z.string())
+			})
 		}),
 	}
 })

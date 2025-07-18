@@ -140,6 +140,97 @@ Nuxt Contentをweb上で編集するwebサービス
 
 複数編集は有料
 
+GitHubへリポジトリ作成
+ファイルをクローン
+NuxtStudioで連携
+NuxtStudioで編集
+Githubでプル
+ローカルに反映
+
+実際に運用しようとすると変更の度にビルドしてアップし直す？のは現実的じゃない気がする
+
+Githubからレンタルサーバーへデプロイする設定にすれば変更反映される？
+でも結局ビルドしてないから同じ？
+
+
+
+--------------------------------------------
+◆公開・運用
+
+NuxtStudioで管理・デプロイする場合プレビューモードを有効化する必要がある
+プレビューモードは、リポジトリがpublicもしくはGithub有料プラン（年48$～）に加入する必要あり
+
+▲コストゼロ運用するなら
+・手動ビルドして静的ファイルをアップ
+・NuxtStudio使わずGithubとCloudflare Pages（privateリポジトリでも可）の連携のみで運用
+・NuxtStudio使うならpublicリポジトリにして運用
+
+
+・初心者がレンタルサーバ上でNuxt.jsをどうにか動かした
+https://dev.ore-shika.com/post/nuxtjs-install-server/
+＞テキトーですが、Webサイトを公開できてなおかつPHPやPerlが動く仕組みを持っているのがレンタルサーバ、Webサイトを公開する機能しかないものがホスティング？
+
+・静的ホスティングサービスの仕組みと使いどころ。そのメリットや使用の注意点も解説
+https://levtech.jp/media/article/column/detail_418/
+
+
+レンタルサーバーだと手動でビルドしてdistディレクトリのファイルをFTPでアップする
+CMS（NuxtStudio）利用しての複数人更新の運用は不可
+
+Github（NuxtStudio）と連動して自動デプロイさせるには対応ホスティングサービス利用するのが一般的
+独自ドメインも設定可能なので無料枠でいいんでは
+
+Netlify
+100GB通信制限・300分ビルド時間等の制限あり
+・Netlifyの無料枠を越えてしまい、1日20ドル請求されてしまった話
+https://blog.tomoya.dev/posts/i-was-billed-beyond-limits-of-netlify/
+
+Cloudflare Pagesがよさそう
+500回ビルド
+・個人開発に役立つ Cloudflare Pages 無料枠でHPコストゼロ運用
+https://izanami.dev/post/b0f59b2e-dd6b-4352-af1d-ae14f7cec707
+・「今までのサーバーで」は本当に正解？いま選びたいCloudFlareという選択肢
+https://depart-inc.com/blog/why-cloudflare-now/
+・Cloudflare Pagesに乗り換えた印象
+https://eizo-gak.com/blog/2024/2024-12-11/
+
+
+
+--------------------------------------------
+◆動的ルーティン
+https://tech-education-nav.com/contents/educational-materials/nuxt-js/nuxt-routing-guide
+
+pagesのvueファイルを[]付きのファイル名とする
+[id].vue
+page-[id].vue
+動的にページがレンダリングされる
+[]内の値をvueファイル内で参照して利用できる
+
+[...slug].vue
+...を付けることで下層含めて適用可能
+階層全てのslugを個別で参照可能
+/pages/type1/[...slug].vue
+で
+/type1/aa/bb/cc にアクセスした場合、
+$route.params.slugで["aa", "bb", "cc"]と取得可能
+
+
+
+--------------------------------------------
+◆コンタクトフォーム
+
+Node.js利用して独自で実装も可能？かも
+Googleフォーム等のサービス利用を前提とすべき
+Googleフォームを利用しつつ独自フォームを作れる？
+https://note.com/aliz/n/ndb8127db9c87
+
+
+
+
+
+
+
+
 
 
 
