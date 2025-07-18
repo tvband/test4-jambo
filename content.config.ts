@@ -8,14 +8,10 @@ export default defineContentConfig({
 			// メタデータの追加
 			schema: z.object({
 				tags: z.array(z.string()),
-				image: z.string(),
+				image: z.string(),// stringでメディアライブラリ参照可能
 				date: z.date(),
 				draft: z.boolean(),
 				number: z.number(),
-				bigint: z.bigint(),
-				symbol: z.symbol(),
-				undifined: z.undefined(),
-				null: z.null()
 			})
 		}),
 	}
