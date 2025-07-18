@@ -11,6 +11,8 @@ const { data } = await useAsyncData(route.path, () =>
     
     <div class="c-contents">
       <div class="c-inner">
+        <p>{{ route.path }}</p>
+        
         <p v-if="data?.date">date : {{ data.date }}</p>
 
         <ContentRenderer v-if="data" :value="data" />
