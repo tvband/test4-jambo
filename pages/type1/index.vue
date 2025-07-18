@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-const { data } = await useAsyncData("blog", () =>
+const { data } = await useAsyncData("type1", () =>
     queryCollection("type1").order("id", "DESC").all(),
 );
 </script>
