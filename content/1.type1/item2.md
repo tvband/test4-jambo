@@ -7,6 +7,19 @@ date: 2025/7/18
 
 ::card
 #title
+editで追加したタイトル
+
+#img
+![pixta\_65780094\_M.jpg](/img/pixta_65780094_M.jpg)
+
+#description
+カードの説明文カードの説明文カードの説明文カードの説明文カードの説明文カードの説明文カードの説明文
+
+カードの説明文カードの説明文カードの説明文カードの説明文カードの説明文
+::
+
+::card
+#title
 card title
 
 #description
