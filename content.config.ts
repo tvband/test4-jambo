@@ -10,6 +10,8 @@ export default defineContentConfig({
 				tags: z.array(z.string()),
 				image: z.string(),// stringでメディアライブラリ参照可能
 				date: z.date(),
+				date2: z.date().toLocaleDateString(),
+				isodate: z.iso.date(),
 				draft: z.boolean(),
 				number: z.number(),
 			})
