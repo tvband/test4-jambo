@@ -13,8 +13,18 @@ export default defineContentConfig({
 					src: z.string().editor({ input: 'media' }),
 					alt: z.string(),
 				}),
+				//slug: z.string().editor({ hidden: true }),//これを入れるとパースエラーになる
 				icon: z.string().optional().editor({ input: 'icon' }),
-				
+				authors: z.array(z.object({
+					slug: z.string(),
+					username: z.string(),
+					name: z.string(),
+					to: z.string(),
+					avatar: z.object({
+						src: z.string(),
+						alt: z.string(),
+					}),
+				})),
 			}),
 		}),
 	}
