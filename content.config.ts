@@ -13,7 +13,6 @@ export default defineContentConfig({
 					src: z.string().editor({ input: 'media' }),
 					alt: z.string(),
 				}),
-				slug: z.string().editor({ hidden: true }),
 				
 			}),
 		}),
