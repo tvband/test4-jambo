@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import format from 'date-fns/format'
+//import format from 'date-fns/format'
 
 const route = useRoute();
 const { data } = await useAsyncData(route.path, () =>
@@ -16,7 +16,7 @@ const { data } = await useAsyncData(route.path, () =>
         <p>route.path : {{ route.path }}</p>
 
         <p v-if="data.date">date : {{ data.date }}</p>
-        <p>formatDate : {{ format(new Date(data.date), 'yyyy.MM.dd') }}</p>
+        <!--<p>formatDate : {{ format(new Date(data.date), 'yyyy.MM.dd') }}</p>-->
         
         <p v-if="data.draft">draft : {{ data.draft }}</p>
         <p v-if="data.category">category : {{ data.category }}</p>
