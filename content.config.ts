@@ -7,6 +7,7 @@ export default defineContentConfig({
 			source: '1.type1/*.md',
 			schema: z.object({
 				draft: z.boolean().default(false),
+				category: z.enum(['Alps', 'Himalaya', 'Pyrenees']).optional(),
 				
 			}),
 		}),
