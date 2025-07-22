@@ -8,6 +8,11 @@ export default defineContentConfig({
 			schema: z.object({
 				draft: z.boolean().default(false),
 				category: z.enum(['Alps', 'Himalaya', 'Pyrenees']).optional(),
+				date: z.date(),
+				image: z.object({
+					src: z.string().editor({ input: 'media' }),
+					alt: z.string(),
+				}),
 				
 			}),
 		}),
