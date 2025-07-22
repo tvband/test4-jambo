@@ -134,6 +134,7 @@ https://zenn.dev/y_taka520/articles/6731292c782c8f
 
 content.config.tsにて各コレクションの設定をする
 コレクション名や参照ディレクトリ、meta項目の設定等
+https://content.nuxt.com/changelog/studio-customisation
 
 コンポーネントにname属性付きのslotタグを記述しておいて、そこにmdファイルから情報挿しこむことも可能
 <slot name="title" mdc-unwrap="p" />
