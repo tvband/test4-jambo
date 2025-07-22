@@ -15,8 +15,4 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/ui',
   ],
-  buildModules: [
-    // Simple usage
-    '@nuxtjs/date-fns',
-  ]
 })
