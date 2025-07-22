@@ -14,7 +14,6 @@ export default defineContentConfig({
 					alt: z.string(),
 				}),
 				slug: z.string().editor({ hidden: true }),
-				icon: z.string().optional().editor({ input: 'icon' }),
 				
 			}),
 		}),
