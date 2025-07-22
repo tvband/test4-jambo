@@ -13,6 +13,7 @@ export default defineContentConfig({
 					src: z.string().editor({ input: 'media' }),
 					alt: z.string(),
 				}),
+				icon: z.string().optional().editor({ input: 'icon' }),
 				
 			}),
 		}),
