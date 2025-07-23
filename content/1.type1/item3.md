@@ -11,7 +11,7 @@ draft: true
 category: Pyrenees
 date: 2025-07-02T00:00:00.000Z
 image:
-  src: /img/GuWeY9laMAA8mLR.jpg
+  src: /img/pixta_65780094_M.jpg
   alt: メタイメージalt
 icon: i-material-symbols-accessibility
 ---
