@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import format from 'date-fns/format'
 
 const { data } = await useAsyncData("type1", () =>
-    queryCollection("type1").order("id", "DESC").all(),
+    queryCollection("type1").order("date", "DESC").all(),
 );
 </script>
 
@@ -11,11 +12,10 @@ const { data } = await useAsyncData("type1", () =>
     
     <div class="c-contents">
       <div class="c-inner">
-        <ul v-if="data" class="list">
-      		<li v-for="article in data" :key="article.path" class="list_item">
-						<NuxtLink :to="article.path">{{ article.title }}</NuxtLink>
-					</li>
-				</ul>
+				<h2>Type1記事一覧</h2>
+
+				<Indexlist postType="type1" />
+
       </div>
     </div>
   </NuxtLayout>

@@ -4,7 +4,7 @@
 <template>
   <nav class="l-nav">
 		<ul class="c-nav-list">
-			<li><NuxtLink to="/">PostType1</NuxtLink></li>
+			<li><NuxtLink to="/type1">PostType1</NuxtLink></li>
 			<li><NuxtLink to="/">PostType2</NuxtLink></li>
 			<li><NuxtLink to="/">PostType3</NuxtLink></li>
 			<li><NuxtLink to="/">PostType4</NuxtLink></li>
