@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import format from 'date-fns/format';
-
+// gsap関連import
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 const main = ref();
 let ctx;
-
+// コレクション名から一覧取得
 const props = defineProps<{
   postType: string;
 }>();
@@ -75,13 +75,17 @@ onUnmounted(() => {
 	<div v-if="data">
 		<div class="c-post-list">
 			<NuxtLink v-for="post in data" :to="post.path" class="c-post-item">
-				<NuxtImg v-if="post.image" :src="post.image.src" :alt="post.image.alt" width="500" height="500" class="c-post-img u-object-fit-cover" />
-				<div class="c-post-header">
-					<p class="c-post-type">{{ props.postType }}</p>
-					<p class="c-post-time"><time :datetime="format(new Date(post.date), 'yyyy-MM-dd')">{{ format(new Date(post.date), 'yyyy.MM.dd') }}</time></p>
+				<div class="c-post-img-wrapper">
+					<NuxtImg v-if="post.image" :src="post.image.src" :alt="post.image.alt" width="500" height="500" class="c-post-img u-object-fit-cover" />
 				</div>
-				<p class="c-post-title">{{ post.title }}</p>
-				<p class="c-post-excerpt">ポストテキスト抜粋ポストテキスト抜粋ポストテキスト抜粋ポストテキスト抜粋ポストテキスト抜粋</p>
+				<div class="c-post-inner">
+					<div class="c-post-header">
+						<p class="c-post-type">{{ props.postType }}</p>
+						<p class="c-post-time"><time :datetime="format(new Date(post.date), 'yyyy-MM-dd')">{{ format(new Date(post.date), 'yyyy.MM.dd') }}</time></p>
+					</div>
+					<p class="c-post-title">{{ post.title }}</p>
+					<p class="c-post-excerpt">ポストテキスト抜粋ポストテキスト抜粋ポストテキスト抜粋ポストテキスト抜粋ポストテキスト抜粋</p>
+				</div>
 			</NuxtLink>
 		</div>
 	</div>
@@ -94,30 +98,44 @@ onUnmounted(() => {
 <style scoped>
 .c-post-list {
   display: grid;
-  gap: 16px;
+  gap: 12px;
   grid-template-columns: 1fr 1fr;
 }
 .c-post-item {
-  border-radius: 16px;
   color: #fff;
   display: block;
-  overflow: hidden;
   padding: 24px;
   position: relative;
-  &:before {
-    background-color: rgb(0 0 0 / .4);
-    content: '';
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-  }
-  img {
-    height: 120%;
-    top: -10%;
-  }
+	transition: all .2s ease;
+  .c-post-img-wrapper {
+		clip-path: inset(12px 12px round 0);
+		height: calc(100% + 24px);
+		left: -12px;
+		overflow: hidden;
+		position: absolute;
+		top: -12px;
+		transition: all .2s ease;
+		width: calc(100% + 24px);
+		&:before {
+			background-color: rgb(0 0 0 / .3);
+			content: '';
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: 1;
+		}
+		img {
+			height: 120%;
+			top: -10%;
+		}
+	}
+	.c-post-inner {
+		position: relative;
+		transition: all .2s ease;
+		z-index: 1;
+	}
   .c-post-header {
     position: relative;
     z-index: 1;
@@ -137,6 +155,13 @@ onUnmounted(() => {
   &:nth-of-type(3) {
     grid-area: 2 / 2 / 4 / 3;
   }
+	&:hover {
+		text-decoration: none;
+		.c-post-img-wrapper {
+			clip-path: inset(0 0 round 0);
+			scale: .98;
+		}
+	}
 }
 </style>
 
