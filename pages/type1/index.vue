@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import format from 'date-fns/format'
-
-const { data } = await useAsyncData("type1", () =>
-    queryCollection("type1").order("date", "DESC").all(),
-);
 </script>
 
 <template>

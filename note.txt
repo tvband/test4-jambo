@@ -135,6 +135,7 @@ https://zenn.dev/y_taka520/articles/6731292c782c8f
 content.config.tsにて各コレクションの設定をする
 コレクション名や参照ディレクトリ、meta項目の設定等
 https://content.nuxt.com/changelog/studio-customisation
+https://content.nuxt.com/docs/collections/types
 
 コンポーネントにname属性付きのslotタグを記述しておいて、そこにmdファイルから情報挿しこむことも可能
 <slot name="title" mdc-unwrap="p" />
@@ -161,6 +162,7 @@ Githubでプル
 NuxtStudioのプレビュー表示に不具合あり
 ・コンテンツのコレクションが複数ある場合、2つ目以降が反映されない
 ・画像が表示されない場合あり（別タブにすると表示されたり、症状がまちまち）
+・日付でソートしても並び順が反映されない？
 
 
 実務ではまだ厳しいかも
@@ -209,6 +211,8 @@ https://izanami.dev/post/b0f59b2e-dd6b-4352-af1d-ae14f7cec707
 https://depart-inc.com/blog/why-cloudflare-now/
 ・Cloudflare Pagesに乗り換えた印象
 https://eizo-gak.com/blog/2024/2024-12-11/
+・Cloudflareでドメイン管理しよう！
+https://note.com/true_se_tips/n/n04578a748781
 
 
 

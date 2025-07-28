@@ -9,7 +9,7 @@ let ctx;
 const props = defineProps<{
   postType: string;
 }>();
-const { data } = await useAsyncData(props.postType, () =>
+const { data } = await useAsyncData('posttype-'+props.postType, () =>
     queryCollection(props.postType).order("date", "DESC").all(),
 );
 
@@ -32,8 +32,8 @@ onMounted(() => {
           end: "bottom top",
           scrub: 1,
           onEnter: ({progress, direction, isActive}) => {
-            console.log(progress, direction, isActive);
-            gsapPara.classList.add('is-gsap-active');
+            //console.log(progress, direction, isActive);
+            //gsapPara.classList.add('is-gsap-active');
           }
         },
       })
@@ -106,7 +106,7 @@ onUnmounted(() => {
   display: block;
   padding: 24px;
   position: relative;
-	transition: all .2s ease;
+	transition: all .3s ease;
   .c-post-img-wrapper {
 		clip-path: inset(12px 12px round 0);
 		height: calc(100% + 24px);
@@ -114,13 +114,14 @@ onUnmounted(() => {
 		overflow: hidden;
 		position: absolute;
 		top: -12px;
-		transition: all .2s ease;
+		transition: all .3s ease;
 		width: calc(100% + 24px);
 		&:before {
-			background-color: rgb(0 0 0 / .3);
+			background-color: rgba(0, 0, 0, 0.3);
 			content: '';
 			height: 100%;
 			left: 0;
+      mix-blend-mode: multiply;
 			position: absolute;
 			top: 0;
 			width: 100%;
@@ -133,7 +134,7 @@ onUnmounted(() => {
 	}
 	.c-post-inner {
 		position: relative;
-		transition: all .2s ease;
+		transition: all .3s ease;
 		z-index: 1;
 	}
   .c-post-header {
@@ -158,8 +159,11 @@ onUnmounted(() => {
 	&:hover {
 		text-decoration: none;
 		.c-post-img-wrapper {
-			clip-path: inset(0 0 round 0);
-			scale: .98;
+      clip-path: inset(0 0 round 40px 50% 40px 50%);
+      scale: .98;
+      &:before {
+        background-color: rgba(240, 76, 204, 0.3);
+      }
 		}
 	}
 }
