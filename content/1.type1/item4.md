@@ -14,6 +14,11 @@ image:
   src: /img/GuWeY9laMAA8mLR.jpg
   alt: メタイメージalt
 icon: i-material-symbols-accessibility
+tags:
+  - tag1
+  - tag2
+  - tag3
+  - tag4
 ---
 
 # Item4 page
