@@ -159,13 +159,29 @@ onUnmounted(() => {
 	&:hover {
 		text-decoration: none;
 		.c-post-img-wrapper {
-      clip-path: inset(0 0 round 40px 50% 40px 50%);
+      /*animation: card-hover .4s ease 0s 1 normal forwards;*/
+      /*clip-path: inset(0 0 round 40px 50% 40px 50%);*/
+      clip-path: inset(0 0 round 16px);
       scale: .98;
       &:before {
         background-color: rgba(240, 76, 204, 0.3);
       }
 		}
 	}
+}
+@keyframes card-hover {
+  0% {
+    clip-path: inset(12px 12px round 0);
+  }
+  30% {
+    clip-path: inset(60px 60px round 1000px);
+  }
+  70% {
+    clip-path: inset(60px 60px round 1000px);
+  }
+  100% {
+    clip-path: inset(0 0 round 40px);
+  }
 }
 </style>
 

@@ -29,6 +29,8 @@ const { data } = await useAsyncData(route.path, () =>
             <div><b>image.alt : </b><span v-if="data.image && data.image.alt">{{ data.image.alt }}</span></div>
             <div><b>authors : </b><span v-if="data.authors">{{ data.authors }}</span></div>
             <div><b>authors[0].avatar.src : </b><span v-if="data.authors && data.authors[0].avatar.src">{{ data.authors[0].avatar.src }}</span></div>
+            <div><b>icon : </b><span v-if="data.icon">{{ data.icon }}</span><UIcon :name="data.icon" class="size-5" /></div>
+            <div><b>tags : </b><span v-if="data.tags"><span v-for="tag in data.tags">「{{ tag }}」</span></span></div>
           </div>
         </div>
 
