@@ -25,6 +25,7 @@ export default defineContentConfig({
 						alt: z.string(),
 					}),
 				})),
+				tags: z.array(z.string()),
 			}),
 		}),
 	}
